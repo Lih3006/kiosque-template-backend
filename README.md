@@ -1,72 +1,84 @@
-<h1> M5 - Kiosque </h1>
+# Python Basics Project
 
-<h2> Como rodar os testes localmente </h2>
+## Introduction
 
-<h3> Preparação do ambiente <h3>
+In this project, you **learned** the fundamental concepts of Python, including variables, functions, built-ins, packing, unpacking, and exception handling.
 
-<p>Instalar o pacote <strong>pytest-testdox</strong>:</p>
+## Module: `product_handler`
 
-```shell
-pip install pytest-testdox
-```
+### Function: `get_product_by_id`
 
-<p>Rodar os testes referentes a cada tarefa isoladamente:</p>
+**Parameters:**
+- An integer representing the ID of the product to be searched.
 
-```shell
-pytest --testdox -vvs caminho/para/o/modulo/da/tarefa
-```
+**Procedure:**
+- If the product with the specified ID **was found** in the menu, **you returned** the dictionary representing it.
+- If the product with the specified ID **was not found** in the menu, **you returned** an empty dictionary.
 
-Exemplo:
-<ul>
-<li>Tarefa 1</li>
+### Function: `get_products_by_type`
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_1/
-```
+**Parameters:**
+- A string representing the type of products to be searched.
 
-<li>Tarefa 2</li>
+**Procedure:**
+- If no products of the specified type **were found**, **you returned** an empty list.
+- If products **were found**, **you returned** a list containing all products of the specified type.
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_2/
-```
-<li>Tarefa 3</li>
+### Function: `add_product`
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_3/
-```
+**Module:** `product_handler`
 
-</ul>
+**Procedure:**
+- **You added** this function to the `product_handler` module.
+- **You considered** that the product information to be added **was always correct**.
+- Parameters:
+  - Variable `menu`: A list representing the menu to which the product **should be added**.
+  - An indefinite number of named arguments representing the product **to be added**.
+- **You generated** a new unique ID for the added product. The new unique ID **was stored** in the "_id" key of the new product, and it **was based** on the highest product ID in the menu, incremented by 1. If there **were no products** in the menu, the generated ID **was 1**.
+- After **generating and attaching** the ID to the product, **you added** the product to the menu and **returned** only the added product with the generated ID.
 
-### **Importante!!**
-Caso esteja utilizando Windows e, ao rodar o comando `pytest --testdox` aparecer um erro de **cmdlet**, troque o inicio do comando pelo seguinte:
+## Module: `tab_handler`
 
-```shell
-python -m pytest --testdox
-```
+### Function: `calculate_tab`
 
-<hr>
-<p>Você também pode rodar cada método de teste isoladamente:</p>
+**Procedure:**
+- Initially, **you created** a `tab_handler` module within the `management` package. Your `calculate_tab` function **was in** this new module.
+- For educational purposes, **you assumed** that invalid product IDs **would never be passed**.
+- Parameters:
+  - A list of dictionaries representing the consumption of a table. Each dictionary **contained** the identification ("_id") of the consumed product and the quantity ("amount") of the product consumed.
+- **You calculated** the subtotal of the table's consumption and **returned** a dictionary in the specified format, with the "subtotal" key **as a string** and the value **as a float rounded** to a maximum of two decimal places.
 
-```shell
-pytest --testdox -vvs caminho/para/o/arquivo/de/teste::NomeDaClasse::nome_do_metodo_de_teste
-```
+## Examples
 
-<p>Exemplo: executar somente "test_can_get_product_by_id".</p>
+**You used** the `main.py` file to verify the functionality through prints matching the examples provided. **You didn't focus** on the indentation of the returns; **you formatted** it for readability.
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_1/test_get_product_by_id.py::TestGetProductById::test_can_get_product_by_id
-```
-<hr>
-<p>Os testes referentes as funcionalidades extras não são executados por padrão caso você não especifique o caminho até eles. Então caso você queira os executar, rode:</p>
+## Refactoring
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_3/extra_add_product.py
-```
+### Refactoring `get_product_by_id`
 
-## Rodando todos os testes
+**You refactored** your `get_product_by_id` function so that if the passed parameter **was not of type integer**, a `TypeError` exception **was raised** with the message: "product id must be an int."
 
-Para rodar todos os testes da aplicação de uma vez, execute o seguinte comando no terminal (estando na raiz do projeto)
+### Refactoring `get_products_by_type`
 
-```shell
-pytest --testdox
-```
+**You refactored** your `get_products_by_type` function so that if the passed parameter **was not of type string**, a `TypeError` exception **was raised** with the message: "product type must be a str."
+
+## Additional Task: `report`
+
+**You added** a function to the `product_handler` module to provide a report on some menu data.
+
+### Function: `menu_report`
+
+**Parameters:**
+- This function **did not receive** any parameters.
+
+**Procedure:**
+- **You compiled** a report on some characteristics of the product menu:
+  - Product Count: The total count of products in the menu.
+  - Average Price: The average price of all products in the menu, **rounded** to a maximum of 2 decimal places.
+  - Most Common Type: The most common product type, i.e., the type that contains the highest quantity of products in the menu.
+- The return **was** a formatted string exactly as shown in the example below, with the respective dynamic values:
+
+```plaintext
+Product Count: [Count]
+Average Price: [Average Price]
+Most Common Type: [Most Common Type]
